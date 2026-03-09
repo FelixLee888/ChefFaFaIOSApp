@@ -43,11 +43,16 @@ struct Recipe: Identifiable, Codable, Hashable {
             return .init(title: title, summary: summary, ingredients: ingredients, instructions: instructions)
         }
 
+        let localizedTitle = translation.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? title : translation.title
+        let localizedSummary = translation.summary.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? summary : translation.summary
+        let localizedIngredients = translation.ingredients.isEmpty ? ingredients : translation.ingredients
+        let localizedInstructions = translation.instructions.isEmpty ? instructions : translation.instructions
+
         return .init(
-            title: translation.title,
-            summary: translation.summary,
-            ingredients: translation.ingredients,
-            instructions: translation.instructions
+            title: localizedTitle,
+            summary: localizedSummary,
+            ingredients: localizedIngredients,
+            instructions: localizedInstructions
         )
     }
 

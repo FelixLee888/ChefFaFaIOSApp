@@ -87,7 +87,7 @@ struct RecipeDetailView: View {
         if !recipe.tags.isEmpty {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    ForEach(recipe.tags, id: \.self) { tag in
+                    ForEach(Array(recipe.tags.enumerated()), id: \.offset) { _, tag in
                         Text(tag)
                             .font(.caption.weight(.bold))
                             .padding(.vertical, 5)
@@ -107,7 +107,7 @@ struct RecipeDetailView: View {
                 .font(.title3.weight(.bold))
                 .foregroundStyle(BrandTheme.ink)
 
-            ForEach(recipe.ingredients, id: \.self) { ingredient in
+            ForEach(Array(recipe.ingredients.enumerated()), id: \.offset) { _, ingredient in
                 Text("• \(ingredient)")
                     .font(.body)
                     .foregroundStyle(BrandTheme.ink.opacity(0.86))

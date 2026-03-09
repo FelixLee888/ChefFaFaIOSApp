@@ -345,7 +345,7 @@ private struct RecipeCard: View {
             if !recipe.tags.isEmpty {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 6) {
-                        ForEach(recipe.tags.prefix(4), id: \.self) { tag in
+                        ForEach(Array(recipe.tags.prefix(4).enumerated()), id: \.offset) { _, tag in
                             Text(tag)
                                 .font(.caption2.weight(.bold))
                                 .padding(.vertical, 4)

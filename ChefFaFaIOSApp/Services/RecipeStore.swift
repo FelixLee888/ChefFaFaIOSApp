@@ -114,7 +114,7 @@ final class RemoteRecipeSyncClient {
             throw SyncError.unexpectedStatus(http.statusCode, endpoint)
         }
 
-        guard let payload = decodePayload(from: data, endpoint: endpoint) else {
+        guard let payload = try await decodePayload(from: data, endpoint: endpoint) else {
             throw SyncError.invalidPayload(endpoint)
         }
 
@@ -131,15 +131,15 @@ final class RemoteRecipeSyncClient {
         return .updated(payload)
     }
 
-    private func decodePayload(from data: Data, endpoint: URL) -> RecipePayload? {
+    private func decodePayload(from data: Data, endpoint: URL) async throws -> RecipePayload? {
         if let payload = try? decoder.decode(RecipePayload.self, from: data) {
             return payload
         }
 
-        return decodeEmbeddedWebsitePayload(from: data, endpoint: endpoint)
+        return try await decodeEmbeddedWebsitePayload(from: data, endpoint: endpoint)
     }
 
-    private func decodeEmbeddedWebsitePayload(from data: Data, endpoint: URL) -> RecipePayload? {
+    private func decodeEmbeddedWebsitePayload(from data: Data, endpoint: URL) async throws -> RecipePayload? {
         guard let html = String(data: data, encoding: .utf8) else { return nil }
         guard let recipeDataJSON = matchGroup(
             in: html,
@@ -153,31 +153,74 @@ final class RemoteRecipeSyncClient {
             return nil
         }
 
+        let recipesBySlug = Dictionary(uniqueKeysWithValues: webRecipes.map { ($0.slug, $0) })
+        let slugs = webRecipes.map(\.slug)
         let imageMap = imagePathBySlug(from: html)
-        let recipeBaseURL = endpoint
-            .deletingLastPathComponent()
-            .appendingPathComponent("recipes", isDirectory: true)
+        async let enDetailsTask = fetchRecipeDetails(locale: "en", slugs: slugs, basedOn: endpoint)
+        async let zhHantDetailsTask = fetchRecipeDetails(locale: "zh-Hant", slugs: slugs, basedOn: endpoint)
+        async let jaDetailsTask = fetchRecipeDetails(locale: "ja", slugs: slugs, basedOn: endpoint)
 
-        let recipes = webRecipes.map { webRecipe in
-            let sourceURL = recipeBaseURL.appendingPathComponent("\(webRecipe.slug).html")
+        let enDetails = await enDetailsTask
+        let zhHantDetails = await zhHantDetailsTask
+        let jaDetails = await jaDetailsTask
+
+        let recipes = slugs.compactMap { slug -> Recipe? in
+            guard let webRecipe = recipesBySlug[slug] else { return nil }
+            let enDetail = enDetails[slug]
+            let fallbackSource = localeRecipeURL(for: "en", slug: slug, basedOn: endpoint)?.absoluteString
+
+            let baseTitle = fallbackValue(enDetail?.title, fallback: webRecipe.title)
+            let baseSummary = fallbackValue(enDetail?.summary, fallback: webRecipe.summary ?? "")
+            let baseCuisine = fallbackValue(enDetail?.cuisine, fallback: webRecipe.cuisine ?? "Global")
+            let baseType = fallbackValue(enDetail?.type, fallback: webRecipe.type ?? "Main Course")
+            let basePrepTime = fallbackValue(enDetail?.prepTime, fallback: "TBD")
+            let baseCookTime = fallbackValue(enDetail?.cookTime, fallback: "TBD")
+            let baseTotalTime = fallbackValue(enDetail?.totalTime, fallback: "TBD")
+            let baseServings = fallbackValue(enDetail?.servings, fallback: "TBD")
+            let baseIngredients: [String] = {
+                if let ingredients = enDetail?.ingredients, !ingredients.isEmpty {
+                    return ingredients
+                }
+                return webRecipe.ingredients ?? []
+            }()
+            let baseInstructions = enDetail?.instructions ?? []
+
+            var translations: [String: RecipeTranslation] = [:]
+            if let zhDetail = zhHantDetails[slug] {
+                translations["zh-Hant"] = RecipeTranslation(
+                    title: fallbackValue(zhDetail.title, fallback: baseTitle),
+                    summary: fallbackValue(zhDetail.summary, fallback: baseSummary),
+                    ingredients: zhDetail.ingredients.isEmpty ? baseIngredients : zhDetail.ingredients,
+                    instructions: zhDetail.instructions
+                )
+            }
+            if let jaDetail = jaDetails[slug] {
+                translations["ja"] = RecipeTranslation(
+                    title: fallbackValue(jaDetail.title, fallback: baseTitle),
+                    summary: fallbackValue(jaDetail.summary, fallback: baseSummary),
+                    ingredients: jaDetail.ingredients.isEmpty ? baseIngredients : jaDetail.ingredients,
+                    instructions: jaDetail.instructions
+                )
+            }
+
             return Recipe(
-                title: webRecipe.title,
-                slug: webRecipe.slug,
-                summary: webRecipe.summary ?? "",
-                cuisine: webRecipe.cuisine ?? "Global",
-                type: webRecipe.type ?? "Main Course",
-                prepTime: "TBD",
-                cookTime: "TBD",
-                totalTime: "TBD",
-                servings: "TBD",
-                ingredients: webRecipe.ingredients ?? [],
-                instructions: [],
+                title: baseTitle,
+                slug: slug,
+                summary: baseSummary,
+                cuisine: baseCuisine,
+                type: baseType,
+                prepTime: basePrepTime,
+                cookTime: baseCookTime,
+                totalTime: baseTotalTime,
+                servings: baseServings,
+                ingredients: baseIngredients,
+                instructions: baseInstructions,
                 tags: webRecipe.tags ?? [],
-                image: imageMap[webRecipe.slug],
-                sourceUrl: sourceURL.absoluteString,
-                googleDocUrl: nil,
+                image: enDetail?.image ?? imageMap[slug],
+                sourceUrl: enDetail?.sourceUrl ?? fallbackSource,
+                googleDocUrl: enDetail?.googleDocUrl,
                 sourceLanguage: "en",
-                translations: nil
+                translations: translations.isEmpty ? nil : translations
             )
         }
 
@@ -195,6 +238,151 @@ final class RemoteRecipeSyncClient {
             ),
             recipes: recipes
         )
+    }
+
+    private func fetchRecipeDetails(locale: String, slugs: [String], basedOn endpoint: URL) async -> [String: WebRecipeDetail] {
+        var result: [String: WebRecipeDetail] = [:]
+        for slug in slugs {
+            guard let url = localeRecipeURL(for: locale, slug: slug, basedOn: endpoint) else { continue }
+            if let detail = await fetchRecipeDetail(at: url) {
+                result[slug] = detail
+            }
+        }
+        return result
+    }
+
+    private func fetchRecipeDetail(at url: URL) async -> WebRecipeDetail? {
+        do {
+            let (data, response) = try await session.data(from: url)
+            guard let http = response as? HTTPURLResponse, (200 ..< 300).contains(http.statusCode),
+                  let html = String(data: data, encoding: .utf8) else {
+                return nil
+            }
+            return parseRecipeDetail(from: html)
+        } catch {
+            return nil
+        }
+    }
+
+    private func parseRecipeDetail(from html: String) -> WebRecipeDetail? {
+        guard let recipeJSON = matchGroup(in: html, pattern: #"<script type="application/ld\+json">([\s\S]*?)</script>"#),
+              let recipeData = recipeJSON.data(using: .utf8),
+              let jsonObject = try? JSONSerialization.jsonObject(with: recipeData) else {
+            return nil
+        }
+
+        let dictionary: [String: Any]? = {
+            if let dict = jsonObject as? [String: Any] {
+                return dict
+            }
+            if let array = jsonObject as? [[String: Any]] {
+                return array.first { fallbackValue(stringValue($0["@type"]), fallback: "") == "Recipe" } ?? array.first
+            }
+            return nil
+        }()
+
+        guard let dict = dictionary else { return nil }
+        let links = sourceLinks(from: html)
+
+        return WebRecipeDetail(
+            title: stringValue(dict["name"]),
+            summary: stringValue(dict["description"]),
+            cuisine: stringValue(dict["recipeCuisine"]),
+            type: stringValue(dict["recipeCategory"]),
+            ingredients: normalizeList(stringArray(dict["recipeIngredient"])),
+            instructions: normalizeList(instructionArray(dict["recipeInstructions"])),
+            prepTime: stringValue(dict["prepTime"]),
+            cookTime: stringValue(dict["cookTime"]),
+            totalTime: stringValue(dict["totalTime"]),
+            servings: stringValue(dict["recipeYield"]),
+            image: firstURLString(dict["image"]),
+            sourceUrl: links.sourceUrl,
+            googleDocUrl: links.googleDocUrl
+        )
+    }
+
+    private func sourceLinks(from html: String) -> (sourceUrl: String?, googleDocUrl: String?) {
+        guard let section = matchGroup(in: html, pattern: #"<section class="recipe-source-links">([\s\S]*?)</section>"#),
+              let regex = try? NSRegularExpression(pattern: #"href="([^"]+)""#, options: [.caseInsensitive]) else {
+            return (nil, nil)
+        }
+
+        let range = NSRange(section.startIndex..., in: section)
+        var links: [String] = []
+        for match in regex.matches(in: section, options: [], range: range) {
+            guard let hrefRange = Range(match.range(at: 1), in: section) else { continue }
+            let href = htmlUnescaped(String(section[hrefRange]))
+            if !links.contains(href) {
+                links.append(href)
+            }
+        }
+
+        let googleDocUrl = links.first { $0.localizedCaseInsensitiveContains("docs.google.com") }
+        let sourceUrl = links.first { !($0.localizedCaseInsensitiveContains("docs.google.com")) }
+        return (sourceUrl, googleDocUrl)
+    }
+
+    private func localeRecipeURL(for locale: String, slug: String, basedOn endpoint: URL) -> URL? {
+        let basePath = endpoint.deletingLastPathComponent().deletingLastPathComponent()
+        return basePath
+            .appendingPathComponent(locale, isDirectory: true)
+            .appendingPathComponent("recipes", isDirectory: true)
+            .appendingPathComponent("\(slug).html")
+    }
+
+    private func fallbackValue(_ primary: String?, fallback: String) -> String {
+        guard let primary else { return fallback }
+        let normalized = primary.trimmingCharacters(in: .whitespacesAndNewlines)
+        return normalized.isEmpty ? fallback : normalized
+    }
+
+    private func stringValue(_ raw: Any?) -> String? {
+        if let value = raw as? String {
+            return value
+        }
+        if let value = raw as? NSNumber {
+            return value.stringValue
+        }
+        if let values = raw as? [Any] {
+            return values.compactMap { stringValue($0) }.first
+        }
+        return nil
+    }
+
+    private func stringArray(_ raw: Any?) -> [String] {
+        if let values = raw as? [String] {
+            return values
+        }
+        if let values = raw as? [Any] {
+            return values.compactMap { stringValue($0) }
+        }
+        if let value = stringValue(raw) {
+            return [value]
+        }
+        return []
+    }
+
+    private func instructionArray(_ raw: Any?) -> [String] {
+        guard let values = raw as? [Any] else { return stringArray(raw) }
+        return values.compactMap { value in
+            if let text = value as? String {
+                return text
+            }
+            if let object = value as? [String: Any] {
+                return stringValue(object["text"]) ?? stringValue(object["name"])
+            }
+            return nil
+        }
+    }
+
+    private func firstURLString(_ raw: Any?) -> String? {
+        stringArray(raw).first
+    }
+
+    private func normalizeList(_ values: [String]) -> [String] {
+        values
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
     }
 
     private func imagePathBySlug(from html: String) -> [String: String] {
@@ -275,10 +463,25 @@ final class RemoteRecipeSyncClient {
     }
 
     private static let defaultEndpoints: [URL] = [
-        URL(string: "https://felixlee888.github.io/Chief-Fafa-Recipe/en/index.html"),
-        URL(string: "https://raw.githubusercontent.com/FelixLee888/Chief-Fafa-Recipe/main/data/recipes.json")
+        URL(string: "https://felixlee888.github.io/Chief-Fafa-Recipe/en/index.html")
     ]
     .compactMap { $0 }
+}
+
+private struct WebRecipeDetail {
+    let title: String?
+    let summary: String?
+    let cuisine: String?
+    let type: String?
+    let ingredients: [String]
+    let instructions: [String]
+    let prepTime: String?
+    let cookTime: String?
+    let totalTime: String?
+    let servings: String?
+    let image: String?
+    let sourceUrl: String?
+    let googleDocUrl: String?
 }
 
 private struct EmbeddedWebRecipe: Codable {
