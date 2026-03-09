@@ -76,18 +76,18 @@ struct RecipeListView: View {
                     languageButton
                 }
             }
-            .confirmationDialog(
-                store.labels.language,
-                isPresented: $isLanguageDialogPresented,
-                titleVisibility: .visible
-            ) {
-                ForEach(AppLocale.allCases) { locale in
-                    Button(locale.displayName) {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            store.locale = locale
-                        }
+            .sheet(isPresented: $isLanguageDialogPresented) {
+                LanguagePickerSheet(
+                    title: store.labels.language,
+                    selectedLocale: store.locale
+                ) { locale in
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        store.locale = locale
                     }
                 }
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+                .presentationBackground(BrandTheme.paper)
             }
         }
     }
@@ -277,6 +277,54 @@ struct RecipeListView: View {
                     .padding(.top, 6)
             }
         }
+    }
+}
+
+private struct LanguagePickerSheet: View {
+    let title: String
+    let selectedLocale: AppLocale
+    let onSelect: (AppLocale) -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text(title)
+                .font(.title3.weight(.bold))
+                .foregroundStyle(BrandTheme.ink)
+
+            ForEach(AppLocale.allCases) { locale in
+                Button {
+                    onSelect(locale)
+                    dismiss()
+                } label: {
+                    HStack(spacing: 10) {
+                        Text(locale.displayName)
+                            .font(.headline.weight(.semibold))
+                            .foregroundStyle(BrandTheme.ink)
+
+                        Spacer()
+
+                        if locale == selectedLocale {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.title3)
+                                .foregroundStyle(BrandTheme.brand)
+                        }
+                    }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 14)
+                    .background(Color.white.opacity(0.96))
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .stroke(BrandTheme.line, lineWidth: 1)
+                    )
+                }
+                .buttonStyle(.plain)
+            }
+
+            Spacer(minLength: 0)
+        }
+        .padding(20)
     }
 }
 
