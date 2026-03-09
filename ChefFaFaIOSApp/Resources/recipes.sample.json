@@ -1,0 +1,69 @@
+[
+  {
+    "id": "fafa-001",
+    "title": "Black Sesame Soup",
+    "cuisine": "Chinese",
+    "type": "Dessert",
+    "prepMinutes": 10,
+    "cookMinutes": 30,
+    "servings": 4,
+    "ingredients": [
+      "100g black sesame",
+      "40g rice",
+      "800ml water",
+      "Rock sugar to taste"
+    ],
+    "steps": [
+      "Rinse sesame and rice, then soak for 1 hour.",
+      "Blend soaked ingredients with water until smooth.",
+      "Cook over low heat while stirring until thickened.",
+      "Add rock sugar and serve warm."
+    ]
+  },
+  {
+    "id": "fafa-002",
+    "title": "Steamed Egg with Minced Pork",
+    "cuisine": "Chinese",
+    "type": "Main",
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      "3 eggs",
+      "120g minced pork",
+      "200ml warm water",
+      "1 tbsp soy sauce",
+      "1 tsp sesame oil"
+    ],
+    "steps": [
+      "Whisk eggs with warm water and strain.",
+      "Season minced pork and spread in a shallow bowl.",
+      "Pour egg mixture over pork and cover loosely.",
+      "Steam over medium heat for 10-12 minutes.",
+      "Finish with soy sauce and sesame oil."
+    ]
+  },
+  {
+    "id": "fafa-003",
+    "title": "Tomato Tofu Stir-Fry",
+    "cuisine": "Chinese",
+    "type": "Vegetarian",
+    "prepMinutes": 12,
+    "cookMinutes": 8,
+    "servings": 2,
+    "ingredients": [
+      "2 tomatoes",
+      "1 block soft tofu",
+      "1 tbsp ketchup",
+      "1 tsp sugar",
+      "2 spring onions"
+    ],
+    "steps": [
+      "Cut tomatoes and tofu into bite-size pieces.",
+      "Cook tomatoes until soft and saucy.",
+      "Add ketchup and sugar, then fold in tofu gently.",
+      "Simmer briefly and top with spring onions."
+    ]
+  }
+]
+

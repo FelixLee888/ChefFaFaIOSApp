@@ -1,0 +1,600 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11B4BF6DF8F318F44FB16B7C /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = DB9B90AC683BD887215DD093 /* recipes.json */; };
+		17C84581D83F07F98B18BDC8 /* 11lASfhSpQPKzApjziA9zPFROvcfhNYuDqsG_ZZ9j0k4-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4916A64E168DBBB3D02EB3A2 /* 11lASfhSpQPKzApjziA9zPFROvcfhNYuDqsG_ZZ9j0k4-01.jpg */; };
+		193EC5C26BB1C484FAAA70FA /* RecipeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5744AC2A1CEF6B03A171E7EE /* RecipeImageView.swift */; };
+		2681E25C269DF31F6B300729 /* 1vcIKTOgG5zmorL6kb6ZhwQZCvQltcTHH-Xdrj6knYBE-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DCFDE2381297714D12120018 /* 1vcIKTOgG5zmorL6kb6ZhwQZCvQltcTHH-Xdrj6knYBE-01.jpg */; };
+		344B414AE59EED5D7305A6EC /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368D808434A9EFA1738726D6 /* RecipeDetailView.swift */; };
+		3942DD07D80E365B878A4FE1 /* fafa_header_video2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1F898B48E68A44615DD2580F /* fafa_header_video2.mp4 */; };
+		3EC794B1AE0B4CF1573A9131 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F26BA74291B847AB0F6DA5 /* Recipe.swift */; };
+		43F4E7F8FA4C1FFC0D6637DB /* 1c1JLGT9M3VTADhNphxkNM4A3iW7NcYk4LD90i0ogyRA-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D2FD297FEA468EB949DB316 /* 1c1JLGT9M3VTADhNphxkNM4A3iW7NcYk4LD90i0ogyRA-01.jpg */; };
+		54D065D64476FB56F71C8957 /* 1Di3FdyqKbYhE2GUhUGs0VoQsfPvWl2dnycuZB30xZws-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F80D06D4CA2BE9947295253F /* 1Di3FdyqKbYhE2GUhUGs0VoQsfPvWl2dnycuZB30xZws-01.jpg */; };
+		57389B21E56A60BC9A0B26F0 /* 1Mo5_kUFujPDgS51MdEop7ViWZrvHSf7-ZO-W6fcwOmM-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DD56AB2D2E5221D70EACC7CC /* 1Mo5_kUFujPDgS51MdEop7ViWZrvHSf7-ZO-W6fcwOmM-01.jpg */; };
+		5BAA632BCEDE520B2BCA84DA /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70981BABFBDADF152B12F90D /* RecipeListView.swift */; };
+		67BCA33E404C91DA229307F8 /* RecipeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2968D755CD64BEC0DCEF9B /* RecipeStore.swift */; };
+		708192312688E7C3425F7694 /* 1V9vLKCcP4VEsEetxe-5VeSKMa4-OtyQwcwfdG0C78oE-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18AA1AFAB18630E30E40F986 /* 1V9vLKCcP4VEsEetxe-5VeSKMa4-OtyQwcwfdG0C78oE-01.jpg */; };
+		71AF2999EB77AA94D9BDD959 /* ChefFaFaIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FFCAE3EDB4F9A7C9CBB062 /* ChefFaFaIOSApp.swift */; };
+		7D632886361F278D2A4ECB5D /* RecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D461CD5775704525C25450EB /* RecipeTests.swift */; };
+		7E3D018EF3170766C5D72400 /* AppLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = D652C4969505E77D956808CB /* AppLocale.swift */; };
+		7EE863A062ACA2729CC3722A /* 1xaZHl2HViJCuik6SlOw0nvFJlT7EJ0R-S62zEjdRrRU-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5DB499C4C9C682DCCD2DAE0 /* 1xaZHl2HViJCuik6SlOw0nvFJlT7EJ0R-S62zEjdRrRU-01.jpg */; };
+		7F2AF7E3236379D7E68C4634 /* fafa_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF858D85B2B316745EA015E /* fafa_icon.png */; };
+		834734DDF8CADAE5CD253ED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F719BCAB864960CAE0CBC7E /* Assets.xcassets */; };
+		8C624E60C1D49E854BF9A627 /* BundledAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F052790B0ACBC4A9CDD1D43 /* BundledAsset.swift */; };
+		8FE68C87D5C4F0677F8ED952 /* 1lqDjFzd2mHd4NT2MvGaF9q5YytSEReRkr9cYL0hHukk-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1099C608F1BDB9B2457A787E /* 1lqDjFzd2mHd4NT2MvGaF9q5YytSEReRkr9cYL0hHukk-01.jpg */; };
+		974A2AA60940E842F9D10F9F /* 1vm3jQSwK0gQzl2HTW_8XzDECNLLLbXQj4dglB75hlbM-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6DE3065802998F06B3906D9 /* 1vm3jQSwK0gQzl2HTW_8XzDECNLLLbXQj4dglB75hlbM-01.jpg */; };
+		ABACC1DD89CCE63E799C85B6 /* 1KB5JMvCIwpBot3oxUmAhuUUEO7OiI8MSExHrGoRrDkI-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76FC63F2138B95CD281FC971 /* 1KB5JMvCIwpBot3oxUmAhuUUEO7OiI8MSExHrGoRrDkI-01.jpg */; };
+		ABC25CBC7BE1109B2C17D9DF /* HeroMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A823BA3577319D6068948AD /* HeroMediaView.swift */; };
+		AD7DC914B5F3F407EAD5913D /* BrandTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE59AE94AED6B24EBD04B44C /* BrandTheme.swift */; };
+		D7709E6B5F4C3FB55729B5B0 /* recipes.sample.json in Resources */ = {isa = PBXBuildFile; fileRef = AE46F54A315B6093A38D206D /* recipes.sample.json */; };
+		D9A3F8DC628F638978F0B0E5 /* fafa_header_video1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1D4383A362831BBAB1069853 /* fafa_header_video1.mp4 */; };
+		F01C8E609FB9B274ACE27F83 /* 1Ie9ulO_9KDm19rpwVo1-maxRm_xfoU371T_7A4KjBc0-01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8DA3B8A6616DB11D2E6E131 /* 1Ie9ulO_9KDm19rpwVo1-maxRm_xfoU371T_7A4KjBc0-01.jpg */; };
+		F9327FD60897BD5F37BD4572 /* fafa_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A49A2A6F055A7BEF47CD656 /* fafa_header.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		68D6486CE04062CF3824377A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E874BCD86A08F73737EDC0E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 642BE9DDF5705A0C070C5A28;
+			remoteInfo = ChefFaFaIOSApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		103C7BE1EE4218553CEFBACB /* ChefFaFaIOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChefFaFaIOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1099C608F1BDB9B2457A787E /* 1lqDjFzd2mHd4NT2MvGaF9q5YytSEReRkr9cYL0hHukk-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1lqDjFzd2mHd4NT2MvGaF9q5YytSEReRkr9cYL0hHukk-01.jpg"; sourceTree = "<group>"; };
+		18AA1AFAB18630E30E40F986 /* 1V9vLKCcP4VEsEetxe-5VeSKMa4-OtyQwcwfdG0C78oE-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1V9vLKCcP4VEsEetxe-5VeSKMa4-OtyQwcwfdG0C78oE-01.jpg"; sourceTree = "<group>"; };
+		1A823BA3577319D6068948AD /* HeroMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMediaView.swift; sourceTree = "<group>"; };
+		1D4383A362831BBAB1069853 /* fafa_header_video1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = fafa_header_video1.mp4; sourceTree = "<group>"; };
+		1F157C4A786BABF6656191DB /* ChefFaFaIOSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChefFaFaIOSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F898B48E68A44615DD2580F /* fafa_header_video2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = fafa_header_video2.mp4; sourceTree = "<group>"; };
+		2F719BCAB864960CAE0CBC7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		368D808434A9EFA1738726D6 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		4916A64E168DBBB3D02EB3A2 /* 11lASfhSpQPKzApjziA9zPFROvcfhNYuDqsG_ZZ9j0k4-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "11lASfhSpQPKzApjziA9zPFROvcfhNYuDqsG_ZZ9j0k4-01.jpg"; sourceTree = "<group>"; };
+		5744AC2A1CEF6B03A171E7EE /* RecipeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImageView.swift; sourceTree = "<group>"; };
+		5A49A2A6F055A7BEF47CD656 /* fafa_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fafa_header.png; sourceTree = "<group>"; };
+		64FFCAE3EDB4F9A7C9CBB062 /* ChefFaFaIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefFaFaIOSApp.swift; sourceTree = "<group>"; };
+		70981BABFBDADF152B12F90D /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		76FC63F2138B95CD281FC971 /* 1KB5JMvCIwpBot3oxUmAhuUUEO7OiI8MSExHrGoRrDkI-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1KB5JMvCIwpBot3oxUmAhuUUEO7OiI8MSExHrGoRrDkI-01.jpg"; sourceTree = "<group>"; };
+		7D2FD297FEA468EB949DB316 /* 1c1JLGT9M3VTADhNphxkNM4A3iW7NcYk4LD90i0ogyRA-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1c1JLGT9M3VTADhNphxkNM4A3iW7NcYk4LD90i0ogyRA-01.jpg"; sourceTree = "<group>"; };
+		7F052790B0ACBC4A9CDD1D43 /* BundledAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledAsset.swift; sourceTree = "<group>"; };
+		99F26BA74291B847AB0F6DA5 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		AE46F54A315B6093A38D206D /* recipes.sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipes.sample.json; sourceTree = "<group>"; };
+		D461CD5775704525C25450EB /* RecipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTests.swift; sourceTree = "<group>"; };
+		D5DB499C4C9C682DCCD2DAE0 /* 1xaZHl2HViJCuik6SlOw0nvFJlT7EJ0R-S62zEjdRrRU-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1xaZHl2HViJCuik6SlOw0nvFJlT7EJ0R-S62zEjdRrRU-01.jpg"; sourceTree = "<group>"; };
+		D652C4969505E77D956808CB /* AppLocale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocale.swift; sourceTree = "<group>"; };
+		DB9B90AC683BD887215DD093 /* recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
+		DBF858D85B2B316745EA015E /* fafa_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fafa_icon.png; sourceTree = "<group>"; };
+		DCFDE2381297714D12120018 /* 1vcIKTOgG5zmorL6kb6ZhwQZCvQltcTHH-Xdrj6knYBE-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1vcIKTOgG5zmorL6kb6ZhwQZCvQltcTHH-Xdrj6knYBE-01.jpg"; sourceTree = "<group>"; };
+		DD2968D755CD64BEC0DCEF9B /* RecipeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStore.swift; sourceTree = "<group>"; };
+		DD56AB2D2E5221D70EACC7CC /* 1Mo5_kUFujPDgS51MdEop7ViWZrvHSf7-ZO-W6fcwOmM-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1Mo5_kUFujPDgS51MdEop7ViWZrvHSf7-ZO-W6fcwOmM-01.jpg"; sourceTree = "<group>"; };
+		E6DE3065802998F06B3906D9 /* 1vm3jQSwK0gQzl2HTW_8XzDECNLLLbXQj4dglB75hlbM-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1vm3jQSwK0gQzl2HTW_8XzDECNLLLbXQj4dglB75hlbM-01.jpg"; sourceTree = "<group>"; };
+		E8DA3B8A6616DB11D2E6E131 /* 1Ie9ulO_9KDm19rpwVo1-maxRm_xfoU371T_7A4KjBc0-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1Ie9ulO_9KDm19rpwVo1-maxRm_xfoU371T_7A4KjBc0-01.jpg"; sourceTree = "<group>"; };
+		EE59AE94AED6B24EBD04B44C /* BrandTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTheme.swift; sourceTree = "<group>"; };
+		F80D06D4CA2BE9947295253F /* 1Di3FdyqKbYhE2GUhUGs0VoQsfPvWl2dnycuZB30xZws-01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1Di3FdyqKbYhE2GUhUGs0VoQsfPvWl2dnycuZB30xZws-01.jpg"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		079B3426ADD00603FDD9072C /* WebAssets */ = {
+			isa = PBXGroup;
+			children = (
+				1D4383A362831BBAB1069853 /* fafa_header_video1.mp4 */,
+				1F898B48E68A44615DD2580F /* fafa_header_video2.mp4 */,
+				5A49A2A6F055A7BEF47CD656 /* fafa_header.png */,
+				DBF858D85B2B316745EA015E /* fafa_icon.png */,
+				7372DD817DBB9ADECD792840 /* recipe-images */,
+			);
+			path = WebAssets;
+			sourceTree = "<group>";
+		};
+		0B32F7C50348A669656E3B6B = {
+			isa = PBXGroup;
+			children = (
+				5453FDE9C1A4EF7F0D52D1E5 /* ChefFaFaIOSApp */,
+				FA4A8E2A3610F6BA33959323 /* ChefFaFaIOSAppTests */,
+				2D086C482799057AB47DF268 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2D086C482799057AB47DF268 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				103C7BE1EE4218553CEFBACB /* ChefFaFaIOSApp.app */,
+				1F157C4A786BABF6656191DB /* ChefFaFaIOSAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		464707255C0C3BF57556AEFB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1A823BA3577319D6068948AD /* HeroMediaView.swift */,
+				5744AC2A1CEF6B03A171E7EE /* RecipeImageView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5453FDE9C1A4EF7F0D52D1E5 /* ChefFaFaIOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				EB4917A714A368CB2224B268 /* App */,
+				6DF65D2349CAA9D269C12037 /* Design */,
+				E0995033D7B8F764D30EF735 /* Features */,
+				74E303A4CEFCAF2E52E6A567 /* Models */,
+				F684F0B366886D3631607A68 /* Resources */,
+				7137D26A3C16A2BB5A0BF089 /* Services */,
+				75516348E46EE83CAD72B0A6 /* Utilities */,
+			);
+			path = ChefFaFaIOSApp;
+			sourceTree = "<group>";
+		};
+		6DF65D2349CAA9D269C12037 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				EE59AE94AED6B24EBD04B44C /* BrandTheme.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		7137D26A3C16A2BB5A0BF089 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DD2968D755CD64BEC0DCEF9B /* RecipeStore.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7372DD817DBB9ADECD792840 /* recipe-images */ = {
+			isa = PBXGroup;
+			children = (
+				7D2FD297FEA468EB949DB316 /* 1c1JLGT9M3VTADhNphxkNM4A3iW7NcYk4LD90i0ogyRA-01.jpg */,
+				F80D06D4CA2BE9947295253F /* 1Di3FdyqKbYhE2GUhUGs0VoQsfPvWl2dnycuZB30xZws-01.jpg */,
+				E8DA3B8A6616DB11D2E6E131 /* 1Ie9ulO_9KDm19rpwVo1-maxRm_xfoU371T_7A4KjBc0-01.jpg */,
+				76FC63F2138B95CD281FC971 /* 1KB5JMvCIwpBot3oxUmAhuUUEO7OiI8MSExHrGoRrDkI-01.jpg */,
+				1099C608F1BDB9B2457A787E /* 1lqDjFzd2mHd4NT2MvGaF9q5YytSEReRkr9cYL0hHukk-01.jpg */,
+				DD56AB2D2E5221D70EACC7CC /* 1Mo5_kUFujPDgS51MdEop7ViWZrvHSf7-ZO-W6fcwOmM-01.jpg */,
+				18AA1AFAB18630E30E40F986 /* 1V9vLKCcP4VEsEetxe-5VeSKMa4-OtyQwcwfdG0C78oE-01.jpg */,
+				DCFDE2381297714D12120018 /* 1vcIKTOgG5zmorL6kb6ZhwQZCvQltcTHH-Xdrj6knYBE-01.jpg */,
+				E6DE3065802998F06B3906D9 /* 1vm3jQSwK0gQzl2HTW_8XzDECNLLLbXQj4dglB75hlbM-01.jpg */,
+				D5DB499C4C9C682DCCD2DAE0 /* 1xaZHl2HViJCuik6SlOw0nvFJlT7EJ0R-S62zEjdRrRU-01.jpg */,
+				4916A64E168DBBB3D02EB3A2 /* 11lASfhSpQPKzApjziA9zPFROvcfhNYuDqsG_ZZ9j0k4-01.jpg */,
+			);
+			path = "recipe-images";
+			sourceTree = "<group>";
+		};
+		74E303A4CEFCAF2E52E6A567 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D652C4969505E77D956808CB /* AppLocale.swift */,
+				99F26BA74291B847AB0F6DA5 /* Recipe.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		75516348E46EE83CAD72B0A6 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7F052790B0ACBC4A9CDD1D43 /* BundledAsset.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E0995033D7B8F764D30EF735 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				368D808434A9EFA1738726D6 /* RecipeDetailView.swift */,
+				70981BABFBDADF152B12F90D /* RecipeListView.swift */,
+				464707255C0C3BF57556AEFB /* Components */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EB4917A714A368CB2224B268 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				64FFCAE3EDB4F9A7C9CBB062 /* ChefFaFaIOSApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F684F0B366886D3631607A68 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2F719BCAB864960CAE0CBC7E /* Assets.xcassets */,
+				DB9B90AC683BD887215DD093 /* recipes.json */,
+				AE46F54A315B6093A38D206D /* recipes.sample.json */,
+				079B3426ADD00603FDD9072C /* WebAssets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FA4A8E2A3610F6BA33959323 /* ChefFaFaIOSAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				D461CD5775704525C25450EB /* RecipeTests.swift */,
+			);
+			path = ChefFaFaIOSAppTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		642BE9DDF5705A0C070C5A28 /* ChefFaFaIOSApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6394518FB3ADCBD7DD9ECC7 /* Build configuration list for PBXNativeTarget "ChefFaFaIOSApp" */;
+			buildPhases = (
+				897D4071934CF9AD95EFBED1 /* Sources */,
+				0D678131D0BA2CFEA40084EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChefFaFaIOSApp;
+			packageProductDependencies = (
+			);
+			productName = ChefFaFaIOSApp;
+			productReference = 103C7BE1EE4218553CEFBACB /* ChefFaFaIOSApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		85CF4ECA7E3133F99A9A7592 /* ChefFaFaIOSAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42865C84F0E226759C655150 /* Build configuration list for PBXNativeTarget "ChefFaFaIOSAppTests" */;
+			buildPhases = (
+				622AF85E342B4F25544510F4 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8033DFC2F20E607509E991A4 /* PBXTargetDependency */,
+			);
+			name = ChefFaFaIOSAppTests;
+			packageProductDependencies = (
+			);
+			productName = ChefFaFaIOSAppTests;
+			productReference = 1F157C4A786BABF6656191DB /* ChefFaFaIOSAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E874BCD86A08F73737EDC0E8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2630;
+				TargetAttributes = {
+					642BE9DDF5705A0C070C5A28 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C01C4DF672D2962AD857A201 /* Build configuration list for PBXProject "ChefFaFaIOSApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 0B32F7C50348A669656E3B6B;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				642BE9DDF5705A0C070C5A28 /* ChefFaFaIOSApp */,
+				85CF4ECA7E3133F99A9A7592 /* ChefFaFaIOSAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0D678131D0BA2CFEA40084EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17C84581D83F07F98B18BDC8 /* 11lASfhSpQPKzApjziA9zPFROvcfhNYuDqsG_ZZ9j0k4-01.jpg in Resources */,
+				54D065D64476FB56F71C8957 /* 1Di3FdyqKbYhE2GUhUGs0VoQsfPvWl2dnycuZB30xZws-01.jpg in Resources */,
+				F01C8E609FB9B274ACE27F83 /* 1Ie9ulO_9KDm19rpwVo1-maxRm_xfoU371T_7A4KjBc0-01.jpg in Resources */,
+				ABACC1DD89CCE63E799C85B6 /* 1KB5JMvCIwpBot3oxUmAhuUUEO7OiI8MSExHrGoRrDkI-01.jpg in Resources */,
+				57389B21E56A60BC9A0B26F0 /* 1Mo5_kUFujPDgS51MdEop7ViWZrvHSf7-ZO-W6fcwOmM-01.jpg in Resources */,
+				708192312688E7C3425F7694 /* 1V9vLKCcP4VEsEetxe-5VeSKMa4-OtyQwcwfdG0C78oE-01.jpg in Resources */,
+				43F4E7F8FA4C1FFC0D6637DB /* 1c1JLGT9M3VTADhNphxkNM4A3iW7NcYk4LD90i0ogyRA-01.jpg in Resources */,
+				8FE68C87D5C4F0677F8ED952 /* 1lqDjFzd2mHd4NT2MvGaF9q5YytSEReRkr9cYL0hHukk-01.jpg in Resources */,
+				2681E25C269DF31F6B300729 /* 1vcIKTOgG5zmorL6kb6ZhwQZCvQltcTHH-Xdrj6knYBE-01.jpg in Resources */,
+				974A2AA60940E842F9D10F9F /* 1vm3jQSwK0gQzl2HTW_8XzDECNLLLbXQj4dglB75hlbM-01.jpg in Resources */,
+				7EE863A062ACA2729CC3722A /* 1xaZHl2HViJCuik6SlOw0nvFJlT7EJ0R-S62zEjdRrRU-01.jpg in Resources */,
+				834734DDF8CADAE5CD253ED2 /* Assets.xcassets in Resources */,
+				F9327FD60897BD5F37BD4572 /* fafa_header.png in Resources */,
+				D9A3F8DC628F638978F0B0E5 /* fafa_header_video1.mp4 in Resources */,
+				3942DD07D80E365B878A4FE1 /* fafa_header_video2.mp4 in Resources */,
+				7F2AF7E3236379D7E68C4634 /* fafa_icon.png in Resources */,
+				11B4BF6DF8F318F44FB16B7C /* recipes.json in Resources */,
+				D7709E6B5F4C3FB55729B5B0 /* recipes.sample.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		622AF85E342B4F25544510F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D632886361F278D2A4ECB5D /* RecipeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		897D4071934CF9AD95EFBED1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E3D018EF3170766C5D72400 /* AppLocale.swift in Sources */,
+				AD7DC914B5F3F407EAD5913D /* BrandTheme.swift in Sources */,
+				8C624E60C1D49E854BF9A627 /* BundledAsset.swift in Sources */,
+				71AF2999EB77AA94D9BDD959 /* ChefFaFaIOSApp.swift in Sources */,
+				ABC25CBC7BE1109B2C17D9DF /* HeroMediaView.swift in Sources */,
+				3EC794B1AE0B4CF1573A9131 /* Recipe.swift in Sources */,
+				344B414AE59EED5D7305A6EC /* RecipeDetailView.swift in Sources */,
+				193EC5C26BB1C484FAAA70FA /* RecipeImageView.swift in Sources */,
+				5BAA632BCEDE520B2BCA84DA /* RecipeListView.swift in Sources */,
+				67BCA33E404C91DA229307F8 /* RecipeStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8033DFC2F20E607509E991A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 642BE9DDF5705A0C070C5A28 /* ChefFaFaIOSApp */;
+			targetProxy = 68D6486CE04062CF3824377A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3BFC9474A5538FF7A447EE3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.1;
+			};
+			name = Debug;
+		};
+		3F7E74460E3955551BE76215 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.1;
+			};
+			name = Release;
+		};
+		76CAF8D4ABB5F711434721E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6G7U94E3B8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Chef Fafa";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.felixlee.cheffafa.ios;
+				PRODUCT_NAME = ChefFaFaIOSApp;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F704317EFD50EEDD1494DF96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChefFaFaIOSApp.app/ChefFaFaIOSApp";
+			};
+			name = Release;
+		};
+		F789F6AC890470118A680115 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChefFaFaIOSApp.app/ChefFaFaIOSApp";
+			};
+			name = Debug;
+		};
+		F83261EAA9C9523263CFD67E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6G7U94E3B8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Chef Fafa";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.felixlee.cheffafa.ios;
+				PRODUCT_NAME = ChefFaFaIOSApp;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42865C84F0E226759C655150 /* Build configuration list for PBXNativeTarget "ChefFaFaIOSAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F789F6AC890470118A680115 /* Debug */,
+				F704317EFD50EEDD1494DF96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C01C4DF672D2962AD857A201 /* Build configuration list for PBXProject "ChefFaFaIOSApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BFC9474A5538FF7A447EE3C /* Debug */,
+				3F7E74460E3955551BE76215 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D6394518FB3ADCBD7DD9ECC7 /* Build configuration list for PBXNativeTarget "ChefFaFaIOSApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76CAF8D4ABB5F711434721E2 /* Debug */,
+				F83261EAA9C9523263CFD67E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E874BCD86A08F73737EDC0E8 /* Project object */;
+}
