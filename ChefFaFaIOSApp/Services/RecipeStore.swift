@@ -114,11 +114,12 @@ final class RemoteRecipeSyncClient {
             throw SyncError.unexpectedStatus(http.statusCode, endpoint)
         }
 
-        guard let payload = try? decoder.decode(RecipePayload.self, from: data) else {
+        guard let payload = decodePayload(from: data, endpoint: endpoint) else {
             throw SyncError.invalidPayload(endpoint)
         }
 
-        try persistCache(data)
+        let cacheData = try JSONEncoder().encode(payload)
+        try persistCache(cacheData)
 
         if let etag = http.value(forHTTPHeaderField: "ETag"), !etag.isEmpty {
             userDefaults.set(etag, forKey: "RecipeSync.etag.\(endpointKey)")
@@ -128,6 +129,119 @@ final class RemoteRecipeSyncClient {
         }
 
         return .updated(payload)
+    }
+
+    private func decodePayload(from data: Data, endpoint: URL) -> RecipePayload? {
+        if let payload = try? decoder.decode(RecipePayload.self, from: data) {
+            return payload
+        }
+
+        return decodeEmbeddedWebsitePayload(from: data, endpoint: endpoint)
+    }
+
+    private func decodeEmbeddedWebsitePayload(from data: Data, endpoint: URL) -> RecipePayload? {
+        guard let html = String(data: data, encoding: .utf8) else { return nil }
+        guard let recipeDataJSON = matchGroup(
+            in: html,
+            pattern: #"<script id="recipe-data" type="application/json">([\s\S]*?)</script>"#
+        ) else {
+            return nil
+        }
+
+        guard let recipeData = recipeDataJSON.data(using: .utf8),
+              let webRecipes = try? decoder.decode([EmbeddedWebRecipe].self, from: recipeData) else {
+            return nil
+        }
+
+        let imageMap = imagePathBySlug(from: html)
+        let recipeBaseURL = endpoint
+            .deletingLastPathComponent()
+            .appendingPathComponent("recipes", isDirectory: true)
+
+        let recipes = webRecipes.map { webRecipe in
+            let sourceURL = recipeBaseURL.appendingPathComponent("\(webRecipe.slug).html")
+            return Recipe(
+                title: webRecipe.title,
+                slug: webRecipe.slug,
+                summary: webRecipe.summary ?? "",
+                cuisine: webRecipe.cuisine ?? "Global",
+                type: webRecipe.type ?? "Main Course",
+                prepTime: "TBD",
+                cookTime: "TBD",
+                totalTime: "TBD",
+                servings: "TBD",
+                ingredients: webRecipe.ingredients ?? [],
+                instructions: [],
+                tags: webRecipe.tags ?? [],
+                image: imageMap[webRecipe.slug],
+                sourceUrl: sourceURL.absoluteString,
+                googleDocUrl: nil,
+                sourceLanguage: "en",
+                translations: nil
+            )
+        }
+
+        if recipes.isEmpty {
+            return nil
+        }
+
+        let siteTitle = matchGroup(in: html, pattern: #"<meta property="og:title" content="([^"]+)""#) ?? "Chef Fafa's Recipe"
+        let siteDescription = matchGroup(in: html, pattern: #"<meta name="description" content="([^"]*)""#) ?? ""
+
+        return RecipePayload(
+            site: SiteMeta(
+                title: htmlUnescaped(siteTitle),
+                description: htmlUnescaped(siteDescription)
+            ),
+            recipes: recipes
+        )
+    }
+
+    private func imagePathBySlug(from html: String) -> [String: String] {
+        let pattern = #"<a[^>]*class="recipe-card__link"[^>]*href="[^"]*/recipes/([^"/]+)\.html"[^>]*>[\s\S]*?<img[^>]*src="([^"]+)""#
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) else {
+            return [:]
+        }
+
+        let range = NSRange(html.startIndex..., in: html)
+        var result: [String: String] = [:]
+
+        regex.matches(in: html, options: [], range: range).forEach { match in
+            guard let slugRange = Range(match.range(at: 1), in: html),
+                  let imageRange = Range(match.range(at: 2), in: html) else {
+                return
+            }
+            result[String(html[slugRange])] = htmlUnescaped(String(html[imageRange]))
+        }
+
+        return result
+    }
+
+    private func matchGroup(in text: String, pattern: String) -> String? {
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) else {
+            return nil
+        }
+        let range = NSRange(text.startIndex..., in: text)
+        guard let match = regex.firstMatch(in: text, options: [], range: range),
+              match.numberOfRanges > 1,
+              let valueRange = Range(match.range(at: 1), in: text) else {
+            return nil
+        }
+        return String(text[valueRange])
+    }
+
+    private func htmlUnescaped(_ text: String) -> String {
+        let map: [String: String] = [
+            "&quot;": "\"",
+            "&#39;": "'",
+            "&amp;": "&",
+            "&lt;": "<",
+            "&gt;": ">"
+        ]
+
+        return map.reduce(text) { partial, pair in
+            partial.replacingOccurrences(of: pair.key, with: pair.value)
+        }
     }
 
     private func persistCache(_ data: Data) throws {
@@ -161,10 +275,20 @@ final class RemoteRecipeSyncClient {
     }
 
     private static let defaultEndpoints: [URL] = [
-        URL(string: "https://felixlee888.github.io/Chief-Fafa-Recipe/data/recipes.json"),
+        URL(string: "https://felixlee888.github.io/Chief-Fafa-Recipe/en/index.html"),
         URL(string: "https://raw.githubusercontent.com/FelixLee888/Chief-Fafa-Recipe/main/data/recipes.json")
     ]
     .compactMap { $0 }
+}
+
+private struct EmbeddedWebRecipe: Codable {
+    let slug: String
+    let title: String
+    let cuisine: String?
+    let type: String?
+    let tags: [String]?
+    let summary: String?
+    let ingredients: [String]?
 }
 
 @MainActor
@@ -191,7 +315,7 @@ final class RecipeStore: ObservableObject {
         selectedTypeKey = Self.allFilterValue
         loadRecipesFromCacheOrBundle(bundle: bundle)
         startupSyncTask = Task { [weak self] in
-            await self?.refreshFromWebsite()
+            await self?.refreshFromWebsite(force: true)
         }
     }
 
