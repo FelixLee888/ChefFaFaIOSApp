@@ -269,6 +269,9 @@ final class RecipeStore: ObservableObject {
                 loadError = nil
             }
         } catch {
+            if error.isExpectedCancellation {
+                return
+            }
             if recipes.isEmpty {
                 loadError = "Unable to load recipes from website or local cache."
             }
@@ -318,5 +321,16 @@ final class RecipeStore: ObservableObject {
         if selectedTypeKey != Self.allFilterValue, !types.contains(selectedTypeKey) {
             selectedTypeKey = Self.allFilterValue
         }
+    }
+}
+
+private extension Error {
+    var isExpectedCancellation: Bool {
+        if self is CancellationError {
+            return true
+        }
+
+        let nsError = self as NSError
+        return nsError.domain == NSURLErrorDomain && nsError.code == NSURLErrorCancelled
     }
 }
